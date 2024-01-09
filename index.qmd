@@ -2,7 +2,7 @@
 title: "Programa de Prevención y Control del Dengue de Yucatán 2024"
 format: 
   dashboard:
-    logo: images/logo_cenaprece.jpg
+    logo: images/logo_cenaprece.jpeg
     nav-buttons: [twitter, github, facebook]
 theme: custom.scss
 ---
