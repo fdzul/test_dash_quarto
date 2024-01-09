@@ -1,5 +1,5 @@
 ---
-title: "Programa de Prevención y Control del Dengue de Yucatán 2024"
+title: "Programa de Prevención y Control del Dengue | 2024"
 format: 
   dashboard:
     logo: images/logo_cenaprece.jpeg
@@ -50,13 +50,13 @@ library(sf)
 
 ```
 
-# **Hotspots de la Transmisión de Dengue**
+# [**Hotspots de la Transmisión de Dengue**]{style="font-size:8pt"}
 
 ::: panel-tabset
-
 ### [**Merida**]{style="color:#990000"}
 
 <html>
+
 <head>
 
 ```{=html}
@@ -254,8 +254,6 @@ flexdashboard::gauge(round((sum(y_hot$n_cases)/sum(y$n_cases))*100, digits = 1),
 </body>
 
 </html>
-
-
 
 ### [**Valladolid**]{style="color:#990000"}
 
@@ -866,8 +864,5 @@ flexdashboard::gauge(round((sum(y_hot$n_cases)/sum(y$n_cases))*100, digits = 1),
 
 # **Hotspots del vector del Dengue**
 
-
 # **Escenarios Epidemiológicos**
-
-
 :::
