@@ -8,51 +8,14 @@ theme: custom.scss
 ---
 
 ```{r setup}
-
-# Step 1. load the library ####
-options(shiny.maxRequestSize=30*1024^2)
-library(formattable)
-library(tmap)
-library(rmarkdown)
-library(knitr)
-library(shiny)
-library(flexdashboard)
-library(plotly)
-library(boldenr)
-library(magrittr)
-library(leaflet)
-library(ggplot2)
-library(dplyr)
-library(stringr)
-# library(dash)
-library(ECharts2Shiny)
 library(sf)
-
-
-# Step 3. load the functions ####
-# 1.6 hotspots cases
-
-
-
-
-
-# Step 5. Load the RData files ####
-    
-    # load the blocks
-    load("~/OneDrive/automatic_read_ine_2010/8.RData/block_ine10_mx.RData")
-    
-    # load the dengue cases hotspots
-    load("/Users/fdzul/Dropbox/hotspots_2023/8.RData/cases_hotspots_agebs19.RData")
-    
-    # load the vector hotspots
-    load("~/OneDrive/proyects/hotspots_eggs/8.RData/31_yucatan/betas/31_yucatan_zinb1_betas.RData")
-
-
 ```
+
 
 # [**Hotspots de la Transmisión de Dengue**]{style="font-size:8pt"}
 
 ::: panel-tabset
+
 ### [**Merida**]{style="color:#990000"}
 
 <html>
@@ -116,11 +79,12 @@ body {
 ::: wrapper
 ::: {.box .a}
 ```{r hotspots_dengue_merida}
-
 # Step 1. extract the locality ####
-loc <- rgeomex::extract_locality(cve_edo = "31", locality = "Merida")
+loc <- rgeomex::extract_locality(cve_edo = "31", 
+                                 locality = "Merida")
+
 # Step 2. Extract the hotspots ####
-hotspots <- cases_hotspots_agebs19[loc,]
+hotspots <- denmex::den_hotspots[loc, ]
 mapview::mapview(hotspots <- hotspots,
                  zcol = "intensity_gi",
                  layer.name = "Intensidad",
@@ -322,7 +286,7 @@ body {
 loc <- rgeomex::extract_locality(cve_edo = "31", 
                                  locality = "Valladolid")
 # Step 2. Extract the hotspots ####
-hotspots <- cases_hotspots_agebs19[loc,]
+hotspots <- denmex::den_hotspots[loc, ]
 mapview::mapview(hotspots <- hotspots,
                  zcol = "intensity_gi",
                  layer.name = "Intensidad",
@@ -525,7 +489,7 @@ body {
 loc <- rgeomex::extract_locality(cve_edo = "31", 
                                  locality = "Tizimin")
 # Step 2. Extract the hotspots ####
-hotspots <- cases_hotspots_agebs19[loc,]
+hotspots <- denmex::den_hotspots[loc,]
 mapview::mapview(hotspots <- hotspots,
                  zcol = "intensity_gi",
                  layer.name = "Intensidad",
@@ -727,7 +691,7 @@ body {
 loc <- rgeomex::extract_locality(cve_edo = "31", 
                                  locality = "Ticul")
 # Step 2. Extract the hotspots ####
-hotspots <- cases_hotspots_agebs19[loc,]
+hotspots <- denmex::den_hotspots[loc,]
 mapview::mapview(hotspots <- hotspots,
                  zcol = "intensity_gi",
                  layer.name = "Intensidad",
@@ -745,7 +709,7 @@ mapview::mapview(hotspots <- hotspots,
 # Logistic Regression
 glm.fit <- glm(hotspots_gi ~  DENV_2009 +  DENV_2010 + DENV_2011 + 
                    DENV_2012 + DENV_2013  +  DENV_2014 +
-                   DENV_2016  + DENV_2018 + DENV_2019 + DENV_2020 + DENV_2021 +
+                   DENV_2016  + DENV_2018 + DENV_2020 + DENV_2021 +
                  DENV_2022 + DENV_2023,
                data = hotspots, 
                family = binomial)
@@ -862,7 +826,83 @@ flexdashboard::gauge(round((sum(y_hot$n_cases)/sum(y$n_cases))*100, digits = 1),
 
 </html>
 
+:::
+
 # **Hotspots del vector del Dengue**
 
+::: panel-tabset
+
+### [**Mérida**]{style="color:#990000"}
+
+```{r vector_hotspots_merida, dpi = 300, warning=FALSE, message=FALSE}
+deneggs::map_eggs_hotspots(betas = denmex::eggs_betas_31_yucatan ,
+                           locality = "Mérida",
+                           cve_edo = "31",
+                           palette = rcartocolor::carto_pal,
+                           name = "SunsetDark")
+```
+
+### [**Valladolid**]{style="color:#990000"}
+
+```{r vector_hotspots_valladolid, dpi = 300, warning=FALSE, message=FALSE}
+deneggs::map_eggs_hotspots(betas = denmex::eggs_betas_31_yucatan ,
+                           locality = "Valladolid",
+                           cve_edo = "31",
+                           palette = rcartocolor::carto_pal,
+                           name = "SunsetDark")
+```
+
+
+### [**Tizimin**]{style="color:#990000"}
+
+```{r vector_hotspots_tizimin, dpi = 300, warning=FALSE, message=FALSE}
+deneggs::map_eggs_hotspots(betas = denmex::eggs_betas_31_yucatan ,
+                           locality = "Tizimin",
+                           cve_edo = "31",
+                           palette = rcartocolor::carto_pal,
+                           name = "SunsetDark")
+```
+
+
+### [**Ticul**]{style="color:#990000"}
+
+<html>
+<head>
+
+```{=html}
+<style>
+
+body { min-height: 100vh; }
+</style>
+```
+</head>
+<body>
+
+```{r vector_hotspots_ticul, dpi = 300, warning=FALSE, message=FALSE}
+deneggs::map_eggs_hotspots(betas = denmex::eggs_betas_31_yucatan ,
+                           locality = "Ticul",
+                           cve_edo = "31",
+                           palette = rcartocolor::carto_pal,
+                           name = "SunsetDark")
+```
+
+</body>
+</html>
+
+:::
+
+
+
 # **Escenarios Epidemiológicos**
+
+::: panel-tabset
+
+### [**Merida**]{style="color:#990000"}
+
+### [**Valladolid**]{style="color:#990000"}
+
+### [**Tizimin**]{style="color:#990000"}
+
+### [**Ticul**]{style="color:#990000"}
+
 :::
