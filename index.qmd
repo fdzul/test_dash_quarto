@@ -11,7 +11,6 @@ theme: custom.scss
 library(sf)
 ```
 
-
 # [**Hotspots de la Transmisión de Dengue**]{style="font-size:8pt"}
 
 ::: panel-tabset
