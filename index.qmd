@@ -9,6 +9,8 @@ theme: custom.scss
 
 ```{r setup}
 library(sf)
+mapview::mapviewOptions(default = TRUE,
+                        basemaps.color.shuffle = FALSE)
 ```
 
 # [**Hotspots de la Transmisión de Dengue**]{style="font-size:8pt"}
@@ -84,7 +86,7 @@ loc <- rgeomex::extract_locality(cve_edo = "31",
 
 # Step 2. Extract the hotspots ####
 hotspots <- denmex::den_hotspots[loc, ]
-mapview::mapview(hotspots <- hotspots,
+mapview::mapview(hotspots,
                  zcol = "intensity_gi",
                  layer.name = "Intensidad",
                  label = FALSE,
@@ -286,7 +288,7 @@ loc <- rgeomex::extract_locality(cve_edo = "31",
                                  locality = "Valladolid")
 # Step 2. Extract the hotspots ####
 hotspots <- denmex::den_hotspots[loc, ]
-mapview::mapview(hotspots <- hotspots,
+mapview::mapview(hotspots,
                  zcol = "intensity_gi",
                  layer.name = "Intensidad",
                  label = FALSE,
@@ -489,7 +491,7 @@ loc <- rgeomex::extract_locality(cve_edo = "31",
                                  locality = "Tizimin")
 # Step 2. Extract the hotspots ####
 hotspots <- denmex::den_hotspots[loc,]
-mapview::mapview(hotspots <- hotspots,
+mapview::mapview(hotspots,
                  zcol = "intensity_gi",
                  layer.name = "Intensidad",
                  label = FALSE,
