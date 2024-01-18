@@ -898,10 +898,61 @@ deneggs::map_eggs_hotspots(betas = denmex::eggs_betas_31_yucatan ,
 
 ### [**Merida**]{style="color:#990000"}
 
+```{r risk_ageb_merida}
+# Step 1. calculate the risk ####
+risk <- denhotspots::risk_ageb(betas = denmex::eggs_betas_31_yucatan,
+                               hotspots = denmex::den_hotspots,
+                               intensity_perc = 25,
+                               locality = "Mérida",
+                               cve_edo = "31")
+
+# Step 2. map ####
+denhotspots::map_risk(risk = risk,
+                      staticmap = FALSE)
+
+```
+
+
 ### [**Valladolid**]{style="color:#990000"}
+```{r risk_ageb_valladolid}
+# Step 1. calculate the risk ####
+risk <- denhotspots::risk_ageb(betas = denmex::eggs_betas_31_yucatan,
+                               hotspots = denmex::den_hotspots,
+                               intensity_perc = 25,
+                               locality = "Valladolid",
+                               cve_edo = "31")
+
+# Step 2. map ####
+denhotspots::map_risk(risk = risk,
+                      staticmap = FALSE)
+
+```
+
+
 
 ### [**Tizimin**]{style="color:#990000"}
+```{r risk_ageb_tizimin}
+denhotspots::risk_ageb(betas = denmex::eggs_betas_31_yucatan,
+                               hotspots = denmex::den_hotspots,
+                               intensity_perc = 25,
+                               locality = "Tizimin",
+                               cve_edo = "31")|>
+  denhotspots::map_risk(staticmap = FALSE)
+
+```
+
+
 
 ### [**Ticul**]{style="color:#990000"}
+```{r risk_ageb_ticul}
+# Step 1. calculate the risk ####
+denhotspots::risk_ageb(betas = denmex::eggs_betas_31_yucatan,
+                       hotspots = denmex::den_hotspots,
+                       intensity_perc = 25,
+                       locality = "Ticul",
+                       cve_edo = "31") |>
+  denhotspots::map_risk(staticmap = FALSE)
+
+```
 
 :::
